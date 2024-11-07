@@ -2,6 +2,7 @@
   "name": "maldoneee-pj-todo",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://maldoneee.github.io/maldoneee-pj-todo/",
   "type": "module",
   "scripts": {
     "dev": "vite",
