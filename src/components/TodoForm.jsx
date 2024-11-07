@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import PropTypes from 'prop-types';
 
-export const TodoForm = ({addTodoItem}) => {
+export const TodoForm = ({addTodo}) => {
   const [inputText, setInputText] = useState('');
 
   const isInputEmpty = () => {
@@ -13,7 +13,7 @@ export const TodoForm = ({addTodoItem}) => {
       alert('할 일을 입력해주세요.');
       return;
     }
-    addTodoItem(inputText);
+    addTodo(inputText);
     setInputText('');
   };
 
@@ -28,5 +28,5 @@ export const TodoForm = ({addTodoItem}) => {
 };
 
 TodoForm.propTypes = {
-  addTodoItem: PropTypes.func.isRequired,
+  addTodo: PropTypes.func.isRequired,
 };

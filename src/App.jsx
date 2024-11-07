@@ -6,25 +6,25 @@ function App() {
   const [todos, setTodos] = useState([]);
 
   const addTodo = (inputText) => {
-    setTodos([...todos, {text: inputText, completed: false}]);
+    setTodos([...todos, {id: Date.now(), text: inputText, completed: false}]);
   };
 
-  const deleteTodo = (targetIndex) => {
-    setTodos(todos.filter((_, index) => index !== targetIndex));
+  const deleteTodo = (targetId) => {
+    setTodos(todos.filter((todo) => todo.id !== targetId));
   };
 
-  const editTodo = (index, editInputText) => {
+  const editTodo = (targetId, editInputText) => {
     setTodos(
-        todos.map((todo, i) =>
-            i === index ? {...todo, text: editInputText} : todo,
-        ),
+        todos.map((todo) => (todo.id === targetId ?
+            {...todo, text: editInputText} :
+            todo)),
     );
   };
 
-  const toggleTodo = (index) => {
+  const toggleTodo = (targetId) => {
     setTodos(
-        todos.map((todo, i) =>
-            i === index ? {...todo, completed: !todo.completed} : todo,
+        todos.map((todo) =>
+            todo.id === targetId ? {...todo, completed: !todo.completed} : todo,
         ),
     );
   };
@@ -32,7 +32,7 @@ function App() {
   return (
       <div className="todo-container">
         <h1 className="todo-title">Maldoneee To-Do List</h1>
-        <TodoForm addTodoItem={addTodo}/>
+        <TodoForm addTodo={addTodo}/>
         <TodoList todos={todos} toggleTodo={toggleTodo} deleteTodo={deleteTodo} editTodo={editTodo}/>
       </div>
   );

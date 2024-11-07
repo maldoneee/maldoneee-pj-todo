@@ -1,13 +1,18 @@
 import PropTypes from 'prop-types';
 import {useState} from 'react';
 
-export const TodoItem = ({todo, index, toggleTodo, deleteTodo, editTodo}) => {
+export const TodoItem = ({
+                           todo,
+                           toggleTodo,
+                           deleteTodo,
+                           editTodo,
+                         }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editInputText, setEditInputText] = useState(todo.text);
 
   const handleEditToggle = () => {
     if (isEditing) {
-      editTodo(index, editInputText); // 수정 완료 시 새로운 텍스트 저장
+      editTodo(todo.id, editInputText); // 수정 완료 시 새로운 텍스트 저장
     }
     setIsEditing(!isEditing); // 수정 모드 전환
   };
@@ -23,7 +28,7 @@ export const TodoItem = ({todo, index, toggleTodo, deleteTodo, editTodo}) => {
               className="todo-checkbox"
               type="checkbox"
               checked={todo.completed}
-              onChange={() => toggleTodo(index)}
+              onChange={() => toggleTodo(todo.id)}
           />
           {isEditing ? (
               <input
@@ -45,7 +50,8 @@ export const TodoItem = ({todo, index, toggleTodo, deleteTodo, editTodo}) => {
           <button className="edit-button" onClick={handleEditToggle}>
             {isEditing ? '완료' : '수정'}
           </button>
-          <button className="delete-button" onClick={() => deleteTodo(index)}>삭제
+          <button className="delete-button" onClick={() => deleteTodo(
+              todo.id)}>삭제
           </button>
         </div>
       </li>
@@ -54,7 +60,7 @@ export const TodoItem = ({todo, index, toggleTodo, deleteTodo, editTodo}) => {
 
 TodoItem.propTypes = {
   todo: PropTypes.object,
-  index: PropTypes.number.isRequired,
+  index: PropTypes.number,
   toggleTodo: PropTypes.func.isRequired,
   deleteTodo: PropTypes.func.isRequired,
   editTodo: PropTypes.func.isRequired,

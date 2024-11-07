@@ -10,11 +10,10 @@ export const TodoList = ({
 
   return (
       <ul className="todo-list">
-        {todos.map((todo, index) => (
+        {todos.map((todo) => (
             <TodoItem
-                key={index}
+                key={todo.id}
                 todo={todo}
-                index={index}
                 toggleTodo={toggleTodo}
                 deleteTodo={deleteTodo}
                 editTodo={editTodo}
