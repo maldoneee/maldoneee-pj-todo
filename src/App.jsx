@@ -31,12 +31,23 @@ function App() {
     );
   };
 
+  const filteredTodos = todos.filter((todo) => {
+    switch (activeFilter) {
+      case 'completed':
+        return todo.completed;
+      case 'incomplete':
+        return !todo.completed;
+      default: //all
+        return true;
+    }
+  });
+
   return (
       <div className="todo-container">
         <h1 className="todo-title">Maldoneee To-Do List</h1>
         <TodoForm addTodo={addTodo}/>
         <TodoFilter activeFilter={activeFilter} setActiveFilter={setActiveFilter}/>
-        <TodoList todos={todos} toggleTodo={toggleTodo} deleteTodo={deleteTodo} editTodo={editTodo} activeFilter={activeFilter}/>
+        <TodoList todos={filteredTodos} toggleTodo={toggleTodo} deleteTodo={deleteTodo} editTodo={editTodo} activeFilter={activeFilter}/>
       </div>
   );
 }

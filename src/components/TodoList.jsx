@@ -6,42 +6,33 @@ export const TodoList = ({
                            toggleTodo,
                            deleteTodo,
                            editTodo,
-                           activeFilter,
                          }) => {
 
   return (
       <ul className="todo-list">
-        {activeFilter === 'all' ?
-            todos.map((todo) => (
-                <TodoItem
-                    key={todo.id}
-                    todo={todo}
-                    toggleTodo={toggleTodo}
-                    deleteTodo={deleteTodo}
-                    editTodo={editTodo}
-                />
-            )) :
-            todos.filter(todo => activeFilter === 'completed' ?
-                todo.completed :
-                !todo.completed).
-                map((todo) => (
-                    <TodoItem
-                        key={todo.id}
-                        todo={todo}
-                        toggleTodo={toggleTodo}
-                        deleteTodo={deleteTodo}
-                        editTodo={editTodo}
-                    />
-                ))
-        }
+        {todos.map(todo => (
+            <TodoItem
+                key={todo.id}
+                todo={todo}
+                toggleTodo={toggleTodo}
+                deleteTodo={deleteTodo}
+                editTodo={editTodo}
+            />
+        ))}
       </ul>
   );
 };
 
 TodoList.propTypes = {
-  todos: PropTypes.array,
+  todos: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.oneOfType(
+            [PropTypes.number, PropTypes.string]).isRequired,
+        completed: PropTypes.bool.isRequired,
+        text: PropTypes.string.isRequired,
+      }),
+  ).isRequired,
   toggleTodo: PropTypes.func.isRequired,
   deleteTodo: PropTypes.func.isRequired,
   editTodo: PropTypes.func.isRequired,
-  activeFilter: PropTypes.string,
 };
