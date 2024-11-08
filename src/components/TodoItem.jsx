@@ -8,11 +8,13 @@ export const TodoItem = ({
                            editTodo,
                          }) => {
   const [isEditing, setIsEditing] = useState(false);
-  const [editInputText, setEditInputText] = useState(todo.text);
+  const [editInputText, setEditInputText] = useState('');
 
   const handleEditToggle = () => {
     if (isEditing) {
       editTodo(todo.id, editInputText); // 수정 완료 시 새로운 텍스트 저장
+    } else {
+      setEditInputText(todo.text);
     }
     setIsEditing(!isEditing); // 수정 모드 전환
   };
@@ -59,8 +61,11 @@ export const TodoItem = ({
 };
 
 TodoItem.propTypes = {
-  todo: PropTypes.object,
-  index: PropTypes.number,
+  todo: PropTypes.shape({
+    id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+    text: PropTypes.string.isRequired,
+    completed: PropTypes.bool.isRequired,
+  }).isRequired,
   toggleTodo: PropTypes.func.isRequired,
   deleteTodo: PropTypes.func.isRequired,
   editTodo: PropTypes.func.isRequired,
