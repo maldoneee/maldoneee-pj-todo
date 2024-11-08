@@ -1,9 +1,11 @@
 import {TodoForm} from './components/TodoForm.jsx';
 import {TodoList} from './components/TodoList.jsx';
 import {useState} from 'react';
+import TodoFilter from './components/TodoFilter.jsx';
 
 function App() {
   const [todos, setTodos] = useState([]);
+  const [activeFilter, setActiveFilter] = useState('all');
 
   const addTodo = (inputText) => {
     setTodos([...todos, {id: Date.now(), text: inputText, completed: false}]);
@@ -33,7 +35,8 @@ function App() {
       <div className="todo-container">
         <h1 className="todo-title">Maldoneee To-Do List</h1>
         <TodoForm addTodo={addTodo}/>
-        <TodoList todos={todos} toggleTodo={toggleTodo} deleteTodo={deleteTodo} editTodo={editTodo}/>
+        <TodoFilter activeFilter={activeFilter} setActiveFilter={setActiveFilter}/>
+        <TodoList todos={todos} toggleTodo={toggleTodo} deleteTodo={deleteTodo} editTodo={editTodo} activeFilter={activeFilter}/>
       </div>
   );
 }

@@ -6,19 +6,34 @@ export const TodoList = ({
                            toggleTodo,
                            deleteTodo,
                            editTodo,
+                           activeFilter,
                          }) => {
 
   return (
       <ul className="todo-list">
-        {todos.map((todo) => (
-            <TodoItem
-                key={todo.id}
-                todo={todo}
-                toggleTodo={toggleTodo}
-                deleteTodo={deleteTodo}
-                editTodo={editTodo}
-            />
-        ))}
+        {activeFilter === 'all' ?
+            todos.map((todo) => (
+                <TodoItem
+                    key={todo.id}
+                    todo={todo}
+                    toggleTodo={toggleTodo}
+                    deleteTodo={deleteTodo}
+                    editTodo={editTodo}
+                />
+            )) :
+            todos.filter(todo => activeFilter === 'completed' ?
+                todo.completed :
+                !todo.completed).
+                map((todo) => (
+                    <TodoItem
+                        key={todo.id}
+                        todo={todo}
+                        toggleTodo={toggleTodo}
+                        deleteTodo={deleteTodo}
+                        editTodo={editTodo}
+                    />
+                ))
+        }
       </ul>
   );
 };
@@ -28,4 +43,5 @@ TodoList.propTypes = {
   toggleTodo: PropTypes.func.isRequired,
   deleteTodo: PropTypes.func.isRequired,
   editTodo: PropTypes.func.isRequired,
+  activeFilter: PropTypes.string,
 };
