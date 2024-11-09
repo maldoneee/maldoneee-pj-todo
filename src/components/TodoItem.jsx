@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import {useState} from 'react';
+import {priorityFilters} from '../constants/index.js';
 
 export const TodoItem = ({
                            todo,
@@ -21,6 +22,12 @@ export const TodoItem = ({
 
   const handleEditChange = (e) => {
     setEditInputText(e.target.value);
+  };
+
+  const getPriorityLabel = (priority) => {
+    const priorityObj = priorityFilters.find(
+        (filter) => filter.key === priority);
+    return priorityObj ? priorityObj.label : priority; // label이 없으면 기본값 반환
   };
 
   return (
@@ -48,6 +55,9 @@ export const TodoItem = ({
         </span>
           )}
         </div>
+        <span className={`todo-priority ${todo.priority}`}>
+                {getPriorityLabel(todo.priority)}
+        </span>
         <div className="action-buttons">
           <button className="edit-button" onClick={handleEditToggle}>
             {isEditing ? '완료' : '수정'}
@@ -65,6 +75,7 @@ TodoItem.propTypes = {
     id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
     text: PropTypes.string.isRequired,
     completed: PropTypes.bool.isRequired,
+    priority: PropTypes.string.isRequired,
   }).isRequired,
   toggleTodo: PropTypes.func.isRequired,
   deleteTodo: PropTypes.func.isRequired,

@@ -23,7 +23,7 @@ label {
 }
 
 .todo-container {
-    width: 360px;
+    width: 480px;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -41,7 +41,7 @@ label {
 .todo-input-container {
     display: flex;
     gap: 8px;
-    margin-bottom: 1.2rem;
+    margin-bottom: 1rem;
 }
 
 .todo-input {
@@ -49,12 +49,16 @@ label {
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
-    font-size: 1rem;
-    transition: border-color 0.3s ease;
 }
 
 .todo-input:focus {
     border-color: #1976d2;
+}
+
+.priority-select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
 }
 
 .add-button {
@@ -81,11 +85,12 @@ label {
 
 .todo-item {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    padding: 12px 0;
+    align-items: center;
+    padding: 10px 0;
     border-bottom: 1px solid #eee;
 }
+
 
 .checkbox-and-text {
     display: flex;
@@ -100,7 +105,6 @@ label {
 
 .todo-text {
     font-size: 1rem;
-    color: #333;
 }
 
 .todo-item.completed .todo-text {
@@ -166,4 +170,21 @@ label {
     color: #999;
     font-size: 0.9rem;
     margin-top: 20px;
+}
+
+.todo-priority {
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.todo-priority.high {
+    color: #d32f2f;
+}
+
+.todo-priority.medium {
+    color: #fbc02d;
+}
+
+.todo-priority.low {
+    color: #1976d2;
 }
