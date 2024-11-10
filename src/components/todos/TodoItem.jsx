@@ -2,12 +2,12 @@ import PropTypes from 'prop-types';
 import {useState} from 'react';
 import {priorityFilters} from '../../constants/index.js';
 
-export const TodoItem = ({
-                           todo,
-                           toggleTodo,
-                           deleteTodo,
-                           editTodo,
-                         }) => {
+const TodoItem = ({
+                    todo,
+                    toggleTodo,
+                    deleteTodo,
+                    editTodo,
+                  }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editInputText, setEditInputText] = useState('');
 
@@ -69,6 +69,8 @@ export const TodoItem = ({
       </li>
   );
 };
+
+export default TodoItem;
 
 TodoItem.propTypes = {
   todo: PropTypes.shape({

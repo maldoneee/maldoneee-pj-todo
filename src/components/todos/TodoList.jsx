@@ -1,12 +1,12 @@
-import {TodoItem} from './TodoItem.jsx';
+import {TodoItem} from './index.js';
 import PropTypes from 'prop-types';
 
-export const TodoList = ({
-                           todos = [],
-                           toggleTodo,
-                           deleteTodo,
-                           editTodo,
-                         }) => {
+const TodoList = ({
+                    todos = [],
+                    toggleTodo,
+                    deleteTodo,
+                    editTodo,
+                  }) => {
 
   return (
       <ul className="todo-list">
@@ -22,6 +22,8 @@ export const TodoList = ({
       </ul>
   );
 };
+
+export default TodoList;
 
 TodoList.propTypes = {
   todos: PropTypes.arrayOf(

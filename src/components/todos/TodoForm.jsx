@@ -2,11 +2,11 @@ import {useState} from 'react';
 import PropTypes from 'prop-types';
 import {priorityFilters} from '../../constants/index.js';
 
-export const TodoForm = ({
-                           addTodo,
-                           inputPriority,
-                           setInputPriority,
-                         }) => {
+const TodoForm = ({
+                    addTodo,
+                    inputPriority,
+                    setInputPriority,
+                  }) => {
   const [inputText, setInputText] = useState('');
 
   const isInputEmpty = () => {
@@ -45,6 +45,8 @@ export const TodoForm = ({
       </div>
   );
 };
+
+export default TodoForm;
 
 TodoForm.propTypes = {
   addTodo: PropTypes.func.isRequired,
