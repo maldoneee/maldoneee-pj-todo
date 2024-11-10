@@ -1,6 +1,6 @@
 import {TodoForm} from './components/TodoForm.jsx';
 import {TodoList} from './components/TodoList.jsx';
-import {useEffect, useMemo, useState} from 'react';
+import {useMemo, useState} from 'react';
 import TodoFilterComplete from './components/TodoFilterComplete.jsx';
 import TodoFilterPriority from './components/TodoFilterPriority.jsx';
 import TodoFilterSearch from './components/TodoFilterSearch.jsx';
@@ -41,9 +41,6 @@ function App() {
         ),
     );
   };
-  useEffect(() => {
-
-  }, [todos]);
 
   const filteredTodos = useMemo(() =>
           todos.filter((todo) => searchFilterQuery === '' ? todo :
