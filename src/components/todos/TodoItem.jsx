@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import {useState} from 'react';
-import {priorityFilters} from '../constants/index.js';
+import {priorityFilters} from '../../constants/index.js';
 
 export const TodoItem = ({
                            todo,

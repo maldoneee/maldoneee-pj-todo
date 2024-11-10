@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import {completionFilters} from '../constants/index.js';
+import {completionFilters} from '../../constants/index.js';
 
 const TodoFilterComplete = ({activeFilter = 'all', setActiveFilter}) => {
 

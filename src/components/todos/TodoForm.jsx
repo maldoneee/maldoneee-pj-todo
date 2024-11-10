@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import PropTypes from 'prop-types';
-import {priorityFilters} from '../constants/index.js';
+import {priorityFilters} from '../../constants/index.js';
 
 export const TodoForm = ({
                            addTodo,

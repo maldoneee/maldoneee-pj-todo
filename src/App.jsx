@@ -1,9 +1,10 @@
-import {TodoForm} from './components/TodoForm.jsx';
-import {TodoList} from './components/TodoList.jsx';
+import {TodoForm, TodoList} from './components/todos/index.js';
 import {useMemo, useState} from 'react';
-import TodoFilterComplete from './components/TodoFilterComplete.jsx';
-import TodoFilterPriority from './components/TodoFilterPriority.jsx';
-import TodoFilterSearch from './components/TodoFilterSearch.jsx';
+import {
+  TodoFilterComplete,
+  TodoFilterPriority,
+  TodoFilterSearch,
+} from './components/filters/index.js';
 
 function App() {
   const [todos, setTodos] = useState([]);
