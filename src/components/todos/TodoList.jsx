@@ -1,22 +1,41 @@
 import {TodoItem} from './index.js';
-import PropTypes from 'prop-types';
+import useTodoStore from '../../store/todoStore.js';
+import {useMemo} from 'react';
 
-const TodoList = ({
-                    todos = [],
-                    toggleTodo,
-                    deleteTodo,
-                    editTodo,
-                  }) => {
+const TodoList = () => {
+
+  const {
+    todos,
+    activeFilter,
+    priorityFilter,
+    searchFilterQuery,
+  } = useTodoStore();
+
+  const filteredTodos = useMemo(() =>
+          todos.filter((todo) => searchFilterQuery === '' ? todo :
+              todo.text.toLowerCase().includes(searchFilterQuery.toLowerCase()))
+               .filter((todo) => priorityFilter ===
+                   'all' || todo.priority ===
+                   priorityFilter)
+               .filter((todo) => {
+                     switch (activeFilter) {
+                       case 'completed':
+                         return todo.completed;
+                       case 'incomplete':
+                         return !todo.completed;
+                       default: //all
+                         return true;
+                     }
+                   },
+               ),
+      [todos, searchFilterQuery, activeFilter, priorityFilter]);
 
   return (
       <ul className="todo-list">
-        {todos.map(todo => (
+        {filteredTodos.map(todo => (
             <TodoItem
                 key={todo.id}
                 todo={todo}
-                toggleTodo={toggleTodo}
-                deleteTodo={deleteTodo}
-                editTodo={editTodo}
             />
         ))}
       </ul>
@@ -24,17 +43,3 @@ const TodoList = ({
 };
 
 export default TodoList;
-
-TodoList.propTypes = {
-  todos: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.oneOfType(
-            [PropTypes.number, PropTypes.string]).isRequired,
-        completed: PropTypes.bool.isRequired,
-        text: PropTypes.string.isRequired,
-      }),
-  ).isRequired,
-  toggleTodo: PropTypes.func.isRequired,
-  deleteTodo: PropTypes.func.isRequired,
-  editTodo: PropTypes.func.isRequired,
-};

@@ -1,9 +1,7 @@
-import PropTypes from 'prop-types';
+import useTodoStore from '../../store/todoStore.js';
 
-const TodoFilterSearch = ({searchFilterQuery = '', setSearchFilterQuery}) => {
-  // const handleSearchChange = (e) => {
-  //   setSearchQuery(e.target.value);
-  // };
+const TodoFilterSearch = () => {
+  const {searchFilterQuery, setSearchFilterQuery} = useTodoStore();
 
   return (
       <div className="filter-container">
@@ -23,8 +21,3 @@ const TodoFilterSearch = ({searchFilterQuery = '', setSearchFilterQuery}) => {
 };
 
 export default TodoFilterSearch;
-
-TodoFilterSearch.propTypes = {
-  searchFilterQuery: PropTypes.string,
-  setSearchFilterQuery: PropTypes.func,
-};

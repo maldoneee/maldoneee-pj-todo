@@ -1,7 +1,8 @@
-import PropTypes from 'prop-types';
 import {priorityFilters} from '../../constants/index.js';
+import useTodoStore from '../../store/todoStore.js';
 
-const TodoFilterPriority = ({priorityFilter = 'medium', setPriorityFilter}) => {
+const TodoFilterPriority = () => {
+  const {priorityFilter, setPriorityFilter} = useTodoStore();
   const handleFilterClick = (key) => {
     if (key !== priorityFilter) {
       setPriorityFilter(key);
@@ -26,8 +27,3 @@ const TodoFilterPriority = ({priorityFilter = 'medium', setPriorityFilter}) => {
 };
 
 export default TodoFilterPriority;
-
-TodoFilterPriority.propTypes = {
-  priorityFilter: PropTypes.string,
-  setPriorityFilter: PropTypes.func.isRequired,
-};

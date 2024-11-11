@@ -1,13 +1,12 @@
 import {useState} from 'react';
-import PropTypes from 'prop-types';
 import {priorityFilters} from '../../constants/index.js';
+import useTodoStore from '../../store/todoStore.js';
 
-const TodoForm = ({
-                    addTodo,
-                    inputPriority,
-                    setInputPriority,
-                  }) => {
+const TodoForm = () => {
   const [inputText, setInputText] = useState('');
+  const [inputPriority, setInputPriority] = useState('medium');
+
+  const {addTodo} = useTodoStore();
 
   const isInputEmpty = () => {
     return inputText.trim() === '';
@@ -18,7 +17,7 @@ const TodoForm = ({
       alert('할 일을 입력해주세요.');
       return;
     }
-    addTodo(inputText);
+    addTodo(inputText, inputPriority);
     setInputText('');
   };
 
@@ -32,7 +31,6 @@ const TodoForm = ({
             value={inputPriority}
             onChange={(e) => {
               setInputPriority(e.target.value);
-              console.log(e.target.value);
             }}
         >
           {priorityFilters.map((option) => (
@@ -47,9 +45,3 @@ const TodoForm = ({
 };
 
 export default TodoForm;
-
-TodoForm.propTypes = {
-  addTodo: PropTypes.func.isRequired,
-  inputPriority: PropTypes.string.isRequired,
-  setInputPriority: PropTypes.func.isRequired,
-};

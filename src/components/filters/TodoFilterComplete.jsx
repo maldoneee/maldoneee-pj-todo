@@ -1,7 +1,8 @@
-import PropTypes from 'prop-types';
 import {completionFilters} from '../../constants/index.js';
+import useTodoStore from '../../store/todoStore.js';
 
-const TodoFilterComplete = ({activeFilter = 'all', setActiveFilter}) => {
+const TodoFilterComplete = () => {
+  const {activeFilter, setActiveFilter} = useTodoStore();
 
   const handleFilterClick = (key) => {
     setActiveFilter(key);
@@ -23,8 +24,3 @@ const TodoFilterComplete = ({activeFilter = 'all', setActiveFilter}) => {
 };
 
 export default TodoFilterComplete;
-
-TodoFilterComplete.propTypes = {
-  activeFilter: PropTypes.string,
-  setActiveFilter: PropTypes.func.isRequired,
-};

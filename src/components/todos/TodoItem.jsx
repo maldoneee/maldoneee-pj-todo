@@ -1,15 +1,12 @@
-import PropTypes from 'prop-types';
 import {useState} from 'react';
 import {priorityFilters} from '../../constants/index.js';
+import useTodoStore from '../../store/todoStore.js';
+import PropTypes from 'prop-types';
 
-const TodoItem = ({
-                    todo,
-                    toggleTodo,
-                    deleteTodo,
-                    editTodo,
-                  }) => {
+const TodoItem = ({todo}) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editInputText, setEditInputText] = useState('');
+  const {toggleTodo, deleteTodo, editTodo} = useTodoStore();
 
   const handleEditToggle = () => {
     if (isEditing) {
@@ -79,7 +76,4 @@ TodoItem.propTypes = {
     completed: PropTypes.bool.isRequired,
     priority: PropTypes.string.isRequired,
   }).isRequired,
-  toggleTodo: PropTypes.func.isRequired,
-  deleteTodo: PropTypes.func.isRequired,
-  editTodo: PropTypes.func.isRequired,
 };
