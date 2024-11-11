@@ -2,7 +2,8 @@ import {completionFilters} from '../../constants/index.js';
 import useTodoStore from '../../store/todoStore.js';
 
 const TodoFilterComplete = () => {
-  const {activeFilter, setActiveFilter} = useTodoStore();
+  const activeFilter = useTodoStore((state) => state.activeFilter);
+  const setActiveFilter = useTodoStore((state) => state.setActiveFilter);
 
   const handleFilterClick = (key) => {
     setActiveFilter(key);

@@ -6,7 +6,8 @@ import PropTypes from 'prop-types';
 const TodoItem = ({todo}) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editInputText, setEditInputText] = useState('');
-  const {toggleTodo, deleteTodo, editTodo} = useTodoStore();
+
+  const {deleteTodo, toggleTodo, editTodo} = useTodoStore();
 
   const handleEditToggle = () => {
     if (isEditing) {

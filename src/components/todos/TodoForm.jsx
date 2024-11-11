@@ -6,7 +6,7 @@ const TodoForm = () => {
   const [inputText, setInputText] = useState('');
   const [inputPriority, setInputPriority] = useState('medium');
 
-  const {addTodo} = useTodoStore();
+  const addTodo = useTodoStore((state) => state.addTodo);
 
   const isInputEmpty = () => {
     return inputText.trim() === '';

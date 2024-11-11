@@ -3,9 +3,7 @@ import useTodoStore from '../../store/todoStore.js';
 
 const TodoList = () => {
 
-  const {
-    filteredTodos,
-  } = useTodoStore();
+  const filteredTodos = useTodoStore((state) => state.filteredTodos);
 
   return (
       <ul className="todo-list">

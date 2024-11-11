@@ -1,7 +1,9 @@
 import useTodoStore from '../../store/todoStore.js';
 
 const TodoFilterSearch = () => {
-  const {searchFilterQuery, setSearchFilterQuery} = useTodoStore();
+  const searchFilterQuery = useTodoStore((state) => state.searchFilterQuery);
+  const setSearchFilterQuery = useTodoStore(
+      (state) => state.setSearchFilterQuery);
 
   return (
       <div className="filter-container">

@@ -2,7 +2,9 @@ import {priorityFilters} from '../../constants/index.js';
 import useTodoStore from '../../store/todoStore.js';
 
 const TodoFilterPriority = () => {
-  const {priorityFilter, setPriorityFilter} = useTodoStore();
+  const priorityFilter = useTodoStore((state) => state.priorityFilter);
+  const setPriorityFilter = useTodoStore((state) => state.setPriorityFilter);
+
   const handleFilterClick = (key) => {
     if (key !== priorityFilter) {
       setPriorityFilter(key);
